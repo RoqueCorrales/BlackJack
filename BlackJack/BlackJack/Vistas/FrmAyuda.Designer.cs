@@ -1,6 +1,6 @@
 ﻿namespace BlackJack.Vistas
 {
-    partial class FrmLogin
+    partial class FrmAyuda
     {
         /// <summary>
         /// Required designer variable.
@@ -28,33 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.webBrowser = new System.Windows.Forms.WebBrowser();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAyuda));
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // webBrowser
+            // label1
             // 
-            this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser.Location = new System.Drawing.Point(0, 0);
-            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(485, 384);
-            this.webBrowser.TabIndex = 0;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 56);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(563, 51);
+            this.label1.TabIndex = 0;
+            this.label1.Text = resources.GetString("label1.Text");
             // 
-            // FrmLogin
+            // FrmAyuda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::BlackJack.Properties.Resources.BlackJackbottem;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(485, 384);
-            this.Controls.Add(this.webBrowser);
-            this.Name = "FrmLogin";
-            this.Text = "FrmLogin";
+            this.ClientSize = new System.Drawing.Size(769, 481);
+            this.Controls.Add(this.label1);
+            this.Name = "FrmAyuda";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
+            this.Text = "FrmAyuda";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.WebBrowser webBrowser;
+        private System.Windows.Forms.Label label1;
     }
 }
