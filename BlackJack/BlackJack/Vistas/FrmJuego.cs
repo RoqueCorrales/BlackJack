@@ -8,15 +8,26 @@ namespace BlackJack.Vistas
 {
     public partial class FrmJuego : Form
     {
-        private int suma;
+        public BlackJack.Logica.Logica log;
+        private int totalJugador;
+        private int totalDealear;
+        private Baraja barajaJuador;
+        private Baraja barajaDealer;
+        string cartaOculta = @"C:\Users\roke1\Desktop\Utn\4 cuatri\Progra 3\BlackJack\Imagenessa\naipe.jpg";
         public FrmJuego()
         {
 
             InitializeComponent();
-            suma = 0;
+            totalDealear = 0;
+            totalJugador = 0;
+            log = new Logica.Logica();
+            barajaDealer = new Baraja();
+            barajaJuador = new Baraja();
+
             limpiar();
             WebAPI.newGame();
-            Iniciar();
+
+           
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -24,6 +35,7 @@ namespace BlackJack.Vistas
             limpiar();
             WebAPI.newGame();
             Iniciar();
+            IniciarDealear();
 
 
         }
@@ -61,15 +73,22 @@ namespace BlackJack.Vistas
             cartaTres.Image = null;
             cartaCuatro.Image = null;
             cartaCinco.Image = null;
+            c1.Image = null;
+            c2.Image = null;
+            c3.Image = null;
+            c4.Image = null;
+            c5.Image = null;
 
             Juego.ContadorCartas = 0;
-            suma = 0;
+         
         }
 
         private void btnCarta_Click(object sender, EventArgs e)
         {
             Carta carta = WebAPI.requestCard(Juego.Partida.Deck_Id);
             this.mostar(carta);
+            txtTotal.Text = Juego.Partida.Remaining.ToString();
+            
         }
 
         public void Iniciar() { 
@@ -77,6 +96,53 @@ namespace BlackJack.Vistas
             foreach (Carta item in Lista)
             {
                 mostar(item);
-    } }
+                barajaJuador.cartas.Add(item);
+                totalJugador = totalJugador + log.sumar(item, totalJugador);
+                txtTotal.Text = Juego.Partida.Remaining.ToString();
+            }
+
+        }
+        public void IniciarDealear()
+        {
+            List<Carta> Lista = WebAPI.requestCardStartGame(Juego.Partida.Deck_Id);
+            foreach (Carta item in Lista)
+            {
+                mostrarDealear(item);
+                barajaDealer.cartas.Add(item);
+                totalDealear = totalDealear + log.sumar(item, totalDealear);
+                txtTotal.Text = Juego.Partida.Remaining.ToString();
+            }
+
+        }
+
+
+        private void mostrarDealear(Carta c)
+        {
+            switch (barajaDealer.cartas.Count)
+            {
+                case 0:
+                    c1.Image = System.Drawing.Image.FromFile(cartaOculta);
+                   
+                    break;
+                case 1:
+                    c2.ImageLocation = c.Image;
+                    break;
+                case 2:
+                    c3.ImageLocation = c.Image;
+                    break;
+                case 3:
+                    c4.ImageLocation = c.Image;
+                    break;
+                case 4:
+                    c5.ImageLocation = c.Image;
+                    break;
+              
+            }
+        }
+
+        private void cartaCinco_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

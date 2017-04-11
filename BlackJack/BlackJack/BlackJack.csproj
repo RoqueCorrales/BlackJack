@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Logica\Juego.cs" />
     <Compile Include="Logica\Logica.cs" />
+    <Compile Include="Modelo\Baraja.cs" />
     <Compile Include="Modelo\Carta.cs" />
     <Compile Include="Modelo\DATA.cs" />
     <Compile Include="Modelo\Jugador.cs" />

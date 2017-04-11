@@ -12,7 +12,7 @@ namespace BlackJack.Logica
        
         public Logica()
         {
-
+           
         }
         public Boolean confirmarGanada(int cartas, int suma)
         {
@@ -23,22 +23,22 @@ namespace BlackJack.Logica
             return false;
         }
 
-        public static int sumar(Carta c)
+        public  int sumar(Carta c , int total)
         {
             int suma = 0;
             if (c.Value.Equals("QUEEN") || c.Value.Equals("KING") || c.Value.Equals("JACK"))
             {
-                suma = suma + 10;
+                suma = suma  + 10;
             }
             else if (c.Value.Equals("ACE"))
             {
-                if (suma < 7)
+                if (total <= 11)
                 {
                     suma = suma + 10;
                 }
                 else
                 {
-                    suma = suma + 10;
+                    suma = suma + 1;
                 }
             }
             else
