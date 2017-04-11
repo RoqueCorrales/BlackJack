@@ -1,4 +1,5 @@
-﻿using Facebook;
+﻿using BlackJack.Modelo;
+using Facebook;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,83 +15,83 @@ namespace BlackJack.Vistas
 {
     public partial class FrmLogin : Form
     {
-        private string appId;
-        private string extendedPermissions;
 
+        private const string AppId = "188773471634257";
         private readonly Uri _loginUrl;
-        protected readonly FacebookClient _fb;
-       
+        public FacebookOAuthResult _FacebookOAuthResult { get; private set; }
+        private const string _ExtendedPermissions = "user_about_me,public_profile";
 
-        public FacebookOAuthResult FacebookOAuthResult { get; private set; }
 
-        
 
-      
-        public FrmLogin(FacebookClient fb, string appId, string extendedPermissions)
+
+        public FrmLogin()
         {
-            if (fb == null)
-                throw new ArgumentNullException("fb");
-            if (string.IsNullOrWhiteSpace(appId))
+            if (string.IsNullOrEmpty(AppId))
                 throw new ArgumentNullException("appId");
-
-            _fb = fb;
-            _loginUrl = GenerateLoginUrl(appId, extendedPermissions);
-
+            var _oauthClient = new FacebookOAuthClient { AppId = AppId };
+            IDictionary<string, object> _loginParameters = new Dictionary<string, object>();
+            _loginParameters["response_type"] = "token";
+            _loginParameters["display"] = "popup";
+            if (!string.IsNullOrEmpty(_ExtendedPermissions))
+            {
+                _loginParameters["scope"] = _ExtendedPermissions;
+            }
+            _loginUrl = _oauthClient.GetLoginUrl(_loginParameters);
             InitializeComponent();
         }
 
-        public FrmLogin(string appId, string extendedPermissions)
-            : this(new FacebookClient(), appId, extendedPermissions)
+        private void FrmLogin_Load(object sender, EventArgs e)
         {
-        }
-
-        private Uri GenerateLoginUrl(string appId, string extendedPermissions)
-        {
-            // for .net 3.5
-            // var parameters = new Dictionary<string,object>
-            // parameters["client_id"] = appId;
-            dynamic parameters = new ExpandoObject();
-            parameters.client_id = appId;
-            parameters.redirect_uri = "https://www.facebook.com/connect/login_success.html";
-
-            // The requested response: an access token (token), an authorization code (code), or both (code token).
-            parameters.response_type = "token";
-
-            // list of additional display modes can be found at http://developers.facebook.com/docs/reference/dialogs/#display
-            parameters.display = "popup";
-
-            // add the 'scope' parameter only if we have extendedPermissions.
-            if (!string.IsNullOrWhiteSpace(extendedPermissions))
-                parameters.scope = extendedPermissions;
-
-            // when the Form is loaded navigate to the login url.
-            return _fb.GetLoginUrl(parameters);
-        }
-
-        private void FacebookLoginDialog_Load(object sender, EventArgs e)
-        {
-            // make sure to use AbsoluteUri.
             webBrowser.Navigate(_loginUrl.AbsoluteUri);
         }
 
-        private void webBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
+        private void webBrowser1_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
-            // whenever the browser navigates to a new url, try parsing the url.
-            // the url may be the result of OAuth 2.0 authentication.
-
-            FacebookOAuthResult oauthResult;
-            if (_fb.TryParseOAuthCallbackUrl(e.Url, out oauthResult))
+            FacebookOAuthResult _oauthResult;
+            if (FacebookOAuthResult.TryParse(e.Url, out _oauthResult))
             {
-                // The url is the result of OAuth 2.0 authentication
-                FacebookOAuthResult = oauthResult;
-                DialogResult = FacebookOAuthResult.IsSuccess ? DialogResult.OK : DialogResult.No;
+                this._FacebookOAuthResult = _oauthResult;
+                this.DialogResult = _FacebookOAuthResult.IsSuccess ? DialogResult.OK : DialogResult.No;
+                try
+                {
+                    Jugador jugador = new Jugador();
+                    var fb = new FacebookClient(_FacebookOAuthResult.AccessToken);
+                    var parameters = new Dictionary<string, object>();
+                    parameters["fields"] = "id,name,first_name,last_name,gender";
+                    var result = (IDictionary<string, object>)fb.Get("me", parameters);
+                    var id = (string)result["id"];
+                    string profilePictureUrl = string.Format("https://graph.facebook.com/{0}/picture?type={1}", id, "square");
+                    jugador.foto = profilePictureUrl;
+                    try
+                    {
+                        Type tresult = result.GetType();
+                        var objname = (string)result["name"];
+                        var firstName = (string)result["first_name"];
+                        var lastName = (string)result["last_name"];
+                        var gender = (string)result["gender"];
+                        jugador.nombre = objname;
+                        jugador.apellido = lastName;
+                        jugador.genero = gender;
+
+                        MDIPrincipal principal = new MDIPrincipal(jugador);
+                        principal.Show();
+                        this.Close();
+
+                    }
+                    catch (FacebookApiException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                catch (FacebookApiException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             else
             {
-                // The url is NOT the result of OAuth 2.0 authentication.
-                FacebookOAuthResult = null;
+                this._FacebookOAuthResult = null;
             }
         }
-
-    }
+}
 }

@@ -33,12 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
-      <HintPath>..\packages\Facebook.7.0.6\lib\net45\Facebook.dll</HintPath>
+    <Reference Include="Facebook, Version=5.4.1.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Facebook.5.4.1.0\lib\net40-client\Facebook.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -58,6 +58,7 @@
     <Compile Include="Logica\Juego.cs" />
     <Compile Include="Logica\Logica.cs" />
     <Compile Include="Modelo\Carta.cs" />
+    <Compile Include="Modelo\Jugador.cs" />
     <Compile Include="Modelo\MasoCartas.cs" />
     <Compile Include="Modelo\MasoJuego.cs" />
     <Compile Include="Modelo\Partida.cs" />
@@ -88,6 +89,12 @@
     <Compile Include="Vistas\FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\FrmPerfil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\FrmPerfil.Designer.cs">
+      <DependentUpon>FrmPerfil.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\MDIPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmPerfil.resx">
+      <DependentUpon>FrmPerfil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\MDIPrincipal.resx">
       <DependentUpon>MDIPrincipal.cs</DependentUpon>
