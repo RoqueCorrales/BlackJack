@@ -26,7 +26,14 @@ namespace BlackJack.Vistas
 
             lblNombre.Text = jugador.nombre;
             lblApellido.Text = jugador.apellido;
-            lblGenero.Text = jugador.genero;
+            if (jugador.genero.Equals("male"))
+            {
+                lblGenero.Text = "Hombre";
+            }else
+            {
+                lblGenero.Text = "Mujer";
+            }
+            
             fotoPerfil.LoadAsync(jugador.foto);
         }
 
