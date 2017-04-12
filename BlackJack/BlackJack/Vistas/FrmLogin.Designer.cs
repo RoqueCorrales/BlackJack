@@ -38,21 +38,23 @@
             this.webBrowser.Margin = new System.Windows.Forms.Padding(2);
             this.webBrowser.MinimumSize = new System.Drawing.Size(15, 16);
             this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(364, 312);
+            this.webBrowser.Size = new System.Drawing.Size(661, 314);
             this.webBrowser.TabIndex = 0;
-            this.webBrowser.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.webBrowser1_Navigated);
+            this.webBrowser.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.webBrowser_Navigated);
             // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(364, 312);
+            this.ClientSize = new System.Drawing.Size(661, 314);
             this.Controls.Add(this.webBrowser);
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmLogin";
-            this.Text = "FrmLogin";
-            this.Load += new System.EventHandler(this.FrmLogin_Load);
+            this.Text = "Login";
+            this.Load += new System.EventHandler(this.FacebookLoginDialog_Load);
             this.ResumeLayout(false);
 
         }

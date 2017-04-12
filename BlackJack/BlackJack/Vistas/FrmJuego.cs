@@ -23,7 +23,7 @@ namespace BlackJack.Vistas
             log = new Logica.Logica();
             barajaDealer = new Baraja();
             barajaJuador = new Baraja();
-            cartaOculta = @"C:\Users\roke1\Desktop\Utn\4 cuatri\Progra 3\BlackJack\Imagenessa\naipe.jpg";
+            cartaOculta = @"C:\Users\Josue\Desktop\Proyecto Git\BlackJack\Imagenessa\naipe.jpg";
             limpiar();
             WebAPI.newGame();
 

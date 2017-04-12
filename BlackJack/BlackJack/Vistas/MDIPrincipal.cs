@@ -1,4 +1,5 @@
 ﻿using BlackJack.Modelo;
+using Facebook;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,18 +14,19 @@ namespace BlackJack.Vistas
 {
     public partial class MDIPrincipal : Form
     {
-        private int childFormNumber = 0;
         private Jugador jugador;
+        private string _accessToken;
 
         public MDIPrincipal()
         {
             InitializeComponent();
         }
 
-        public MDIPrincipal(Jugador jugador)
+        public MDIPrincipal(Jugador jugador , string access)
         {
             InitializeComponent();
             this.jugador = jugador;
+            this._accessToken = access;
         }
 
 
@@ -48,15 +50,13 @@ namespace BlackJack.Vistas
             perfil.Show();
 
         }
-
-        private void MDIPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            Application.Exit();
-        }
+            Form1 frm = new Form1(_accessToken);
+            frm.Show();
+            this.Close();
 
-        private void MDIPrincipal_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
+
         }
     }
 }
