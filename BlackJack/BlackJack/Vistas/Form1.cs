@@ -23,6 +23,7 @@ namespace BlackJack
         {
             InitializeComponent();
             this._accessToken = _accessToken;
+            logout();
         }
 
 
@@ -70,14 +71,15 @@ namespace BlackJack
                 }
             }
         }
-
-        private void btnLogout_Click(object sender, EventArgs e)
+        private void logout()
         {
             var webBrowser = new WebBrowser();
             var fb = new FacebookClient();
             var logouUrl = fb.GetLogoutUrl(new { access_token = _accessToken, next = "https://www.facebook.com/connect/login_success.html" });
             webBrowser.Navigate(logouUrl);
-          
+        }
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
         }
 
     }

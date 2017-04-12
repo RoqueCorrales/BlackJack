@@ -29,30 +29,19 @@
         private void InitializeComponent()
         {
             this.btnLog = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLog
             // 
             this.btnLog.BackgroundImage = global::BlackJack.Properties.Resources.fblogin;
             this.btnLog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLog.Location = new System.Drawing.Point(36, 197);
+            this.btnLog.Location = new System.Drawing.Point(106, 184);
             this.btnLog.Margin = new System.Windows.Forms.Padding(2);
             this.btnLog.Name = "btnLog";
             this.btnLog.Size = new System.Drawing.Size(159, 45);
             this.btnLog.TabIndex = 0;
             this.btnLog.UseVisualStyleBackColor = true;
             this.btnLog.Click += new System.EventHandler(this.btnFacebookLogin_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(244, 207);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(68, 35);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Logout";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // Form1
             // 
@@ -61,7 +50,6 @@
             this.BackgroundImage = global::BlackJack.Properties.Resources.First;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(370, 275);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnLog);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
@@ -73,7 +61,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnLog;
-        private System.Windows.Forms.Button button1;
     }
 }
 
