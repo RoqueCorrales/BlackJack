@@ -14,16 +14,9 @@ namespace BlackJack.Logica
         {
            
         }
-        public Boolean confirmarGanada(int cartas, int suma)
-        {
-            if(suma ==21 || cartas == 5)
-            {
-                return true;
-            }
-            return false;
-        }
+       
 
-        public  int sumar(Carta c , int total)
+        public  int sumar(Carta c , int total,List<Carta> lista)
         {
             int suma = 0;
             if (c.Value.Equals("QUEEN") || c.Value.Equals("KING") || c.Value.Equals("JACK"))

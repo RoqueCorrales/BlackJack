@@ -13,7 +13,7 @@ namespace BlackJack.Vistas
         private int totalDealear;
         private Baraja barajaJuador;
         private Baraja barajaDealer;
-        string cartaOculta = @"C:\Users\roke1\Desktop\Utn\4 cuatri\Progra 3\BlackJack\Imagenessa\naipe.jpg";
+        string cartaOculta ;
         public FrmJuego()
         {
 
@@ -23,7 +23,7 @@ namespace BlackJack.Vistas
             log = new Logica.Logica();
             barajaDealer = new Baraja();
             barajaJuador = new Baraja();
-
+            cartaOculta = @"C:\Users\roke1\Desktop\Utn\4 cuatri\Progra 3\BlackJack\Imagenessa\naipe.jpg";
             limpiar();
             WebAPI.newGame();
 
@@ -36,6 +36,7 @@ namespace BlackJack.Vistas
             WebAPI.newGame();
             Iniciar();
             IniciarDealear();
+            btnNuevo.Visible = false;
 
 
         }
@@ -78,8 +79,14 @@ namespace BlackJack.Vistas
             c3.Image = null;
             c4.Image = null;
             c5.Image = null;
-
+            totalDealear = 0;
+            totalJugador = 0;
+            barajaDealer = new Baraja();
+            barajaJuador = new Baraja();
             Juego.ContadorCartas = 0;
+            btnCarta.Visible = true;
+            btnQuedarse.Visible = true;
+            btnNuevo.Visible = true;
          
         }
 
@@ -88,7 +95,19 @@ namespace BlackJack.Vistas
             Carta carta = WebAPI.requestCard(Juego.Partida.Deck_Id);
             this.mostar(carta);
             txtTotal.Text = Juego.Partida.Remaining.ToString();
-            
+            totalJugador = totalJugador + log.sumar(carta, totalJugador,barajaJuador.cartas);
+            barajaJuador.cartas.Add(carta);
+
+            if(totalJugador > 21)
+            {
+                c1.ImageLocation = barajaDealer.cartas[0].Image;
+                MessageBox.Show("Has Perdido, Dealer gana con un total de : " + totalDealear);
+                btnQuedarse.Visible = false;
+                btnCarta.Visible = false;
+                btnNuevo.Visible = true;
+            }
+
+
         }
 
         public void Iniciar() { 
@@ -96,8 +115,9 @@ namespace BlackJack.Vistas
             foreach (Carta item in Lista)
             {
                 mostar(item);
+               
+                totalJugador = totalJugador + log.sumar(item, totalJugador,barajaJuador.cartas);
                 barajaJuador.cartas.Add(item);
-                totalJugador = totalJugador + log.sumar(item, totalJugador);
                 txtTotal.Text = Juego.Partida.Remaining.ToString();
             }
 
@@ -108,8 +128,9 @@ namespace BlackJack.Vistas
             foreach (Carta item in Lista)
             {
                 mostrarDealear(item);
+               
+                totalDealear = totalDealear + log.sumar(item, totalDealear,barajaDealer.cartas);
                 barajaDealer.cartas.Add(item);
-                totalDealear = totalDealear + log.sumar(item, totalDealear);
                 txtTotal.Text = Juego.Partida.Remaining.ToString();
             }
 
@@ -143,6 +164,55 @@ namespace BlackJack.Vistas
         private void cartaCinco_Click(object sender, EventArgs e)
         {
 
+        }
+        
+        private void btnQuedarse_Click(object sender, EventArgs e)
+        {
+           
+            while(totalDealear <= totalJugador)
+            {
+                Carta carta = WebAPI.requestCard(Juego.Partida.Deck_Id);
+                mostrarDealear(carta);
+                totalDealear = totalDealear + log.sumar(carta, totalDealear,barajaDealer.cartas);
+                barajaDealer.cartas.Add(carta);
+                txtTotal.Text = Juego.Partida.Remaining.ToString();
+                btnQuedarse.Visible = false;
+                btnCarta.Visible = false;
+
+                
+
+            }
+            if(totalDealear> totalJugador && totalDealear <= 21){
+                c1.ImageLocation = barajaDealer.cartas[0].Image;
+                MessageBox.Show("Has Perdido, Dealer gana con un total de : " + totalDealear);
+                btnQuedarse.Visible = false;
+                btnCarta.Visible = false;
+                btnNuevo.Visible = true;
+
+            }
+            else if(totalJugador == totalDealear)
+            {
+                c1.ImageLocation = barajaDealer.cartas[0].Image;
+                MessageBox.Show("Partida Empatada, Con un total de : " + totalJugador);
+                btnQuedarse.Visible = false;
+                btnCarta.Visible = false;
+                btnNuevo.Visible = true;
+            }
+            else
+            {
+                c1.ImageLocation = barajaDealer.cartas[0].Image;
+                MessageBox.Show("Has Ganado, Con un total de : " + totalJugador);
+                btnQuedarse.Visible = false;
+                btnCarta.Visible = false;
+                btnNuevo.Visible = true;
+            }
+
+        }
+
+        private void btnRebajar_Click(object sender, EventArgs e)
+        {
+            WebAPI.reshuffleCards(Juego.Partida.Deck_Id);
+            MessageBox.Show("Cartas revueltas.");
         }
     }
 }

@@ -134,6 +134,7 @@
             this.btnRebajar.TabIndex = 7;
             this.btnRebajar.Text = "Rebarajar";
             this.btnRebajar.UseVisualStyleBackColor = true;
+            this.btnRebajar.Click += new System.EventHandler(this.btnRebajar_Click);
             // 
             // c1
             // 
@@ -193,6 +194,7 @@
             this.btnQuedarse.TabIndex = 13;
             this.btnQuedarse.Text = "Me quedo.";
             this.btnQuedarse.UseVisualStyleBackColor = true;
+            this.btnQuedarse.Click += new System.EventHandler(this.btnQuedarse_Click);
             // 
             // txtTotal
             // 
