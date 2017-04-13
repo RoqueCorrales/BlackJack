@@ -27,7 +27,7 @@ namespace BlackJack.Logica
             {
                 if (total <= 11)
                 {
-                    suma = suma + 10;
+                    suma = suma + 11;
                 }
                 else
                 {
