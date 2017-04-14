@@ -73,6 +73,16 @@ namespace BlackJack.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _851580_650602211663185_74135741_n {
+            get {
+                object obj = ResourceManager.GetObject("851580_650602211663185_74135741_n", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _9507947 {
             get {
                 object obj = ResourceManager.GetObject("9507947", resourceCulture);
