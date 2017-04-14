@@ -1,0 +1,3 @@
+create database 21Game;
+CREATE TABLE usuario
+(id serial, idFacebook varchar not null, nombre varchar not null,apellido varchar not null, partidasJugadas int, partidasGanadas int);
