@@ -8,22 +8,22 @@ namespace BlackJack.Modelo
 {
     public class Jugador
     {
+     
         public int id { get; set; }
+        public int idFacebook { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
-        public string genero { get; set; }
-        public string foto { get; set; }
+        public int partidasJugadas { get; set; }
+        public int partidasGanadas { get; set; }
+       
 
         public Jugador()
         {
 
         }
-        public Jugador(string nombre,string apellido,string genero,string foto)
+       public string toString()
         {
-            this.nombre = nombre;
-            this.apellido = apellido;
-            this.genero = genero;
-            this.foto = foto;
+            return nombre;
         }
 
     }
