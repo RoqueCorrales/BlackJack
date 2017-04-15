@@ -34,7 +34,7 @@ namespace BlackJack.Vistas
 
         private void jugarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmJuego f = new FrmJuego();
+            FrmJuego f = new FrmJuego(jugador);
             f.Show();
         }
 

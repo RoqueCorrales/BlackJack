@@ -182,6 +182,8 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Database.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\can-stock-photo_csp8697630.jpg" />
+    <None Include="Resources\naipe.jpg" />
     <None Include="Resources\851580_650602211663185_74135741_n.png" />
   </ItemGroup>
   <ItemGroup>

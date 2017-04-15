@@ -14,6 +14,7 @@ namespace BlackJack.Vistas
         private Baraja barajaJuador;
         private Baraja barajaDealer;
         string cartaOculta ;
+        private Jugador jugador;
         public FrmJuego()
         {
 
@@ -28,6 +29,20 @@ namespace BlackJack.Vistas
             WebAPI.newGame();
 
            
+        }
+        public FrmJuego( Jugador jugador)
+        {
+            InitializeComponent();
+            totalDealear = 0;
+            totalJugador = 0;
+            log = new Logica.Logica();
+            barajaDealer = new Baraja();
+            barajaJuador = new Baraja();
+            cartaOculta = @"C:\Users\roke1\Desktop\Utn\4 cuatri\Progra 3\BlackJack\Imagenessa\naipe.jpg";
+            limpiar();
+            WebAPI.newGame();
+            this.jugador = new Jugador();
+            fotoPerfil.LoadAsync(jugador.foto);
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)

@@ -43,6 +43,11 @@
             this.c2 = new System.Windows.Forms.PictureBox();
             this.btnQuedarse = new System.Windows.Forms.Button();
             this.txtTotal = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtTotalJugadas = new System.Windows.Forms.TextBox();
+            this.txtGanadas = new System.Windows.Forms.TextBox();
+            this.fotoPerfil = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.CartaUno)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cartaTres)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cartaDos)).BeginInit();
@@ -53,6 +58,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.c4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fotoPerfil)).BeginInit();
             this.SuspendLayout();
             // 
             // CartaUno
@@ -118,11 +124,12 @@
             // 
             // btnCarta
             // 
-            this.btnCarta.Location = new System.Drawing.Point(314, 451);
+            this.btnCarta.BackgroundImage = global::BlackJack.Properties.Resources.naipe;
+            this.btnCarta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCarta.Location = new System.Drawing.Point(314, 446);
             this.btnCarta.Name = "btnCarta";
-            this.btnCarta.Size = new System.Drawing.Size(107, 57);
+            this.btnCarta.Size = new System.Drawing.Size(68, 67);
             this.btnCarta.TabIndex = 6;
-            this.btnCarta.Text = "Carta";
             this.btnCarta.UseVisualStyleBackColor = true;
             this.btnCarta.Click += new System.EventHandler(this.btnCarta_Click);
             // 
@@ -188,11 +195,12 @@
             // 
             // btnQuedarse
             // 
-            this.btnQuedarse.Location = new System.Drawing.Point(416, 451);
+            this.btnQuedarse.BackgroundImage = global::BlackJack.Properties.Resources.can_stock_photo_csp8697630;
+            this.btnQuedarse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnQuedarse.Location = new System.Drawing.Point(407, 451);
             this.btnQuedarse.Name = "btnQuedarse";
             this.btnQuedarse.Size = new System.Drawing.Size(107, 57);
             this.btnQuedarse.TabIndex = 13;
-            this.btnQuedarse.Text = "Me quedo.";
             this.btnQuedarse.UseVisualStyleBackColor = true;
             this.btnQuedarse.Click += new System.EventHandler(this.btnQuedarse_Click);
             // 
@@ -204,6 +212,49 @@
             this.txtTotal.Size = new System.Drawing.Size(100, 22);
             this.txtTotal.TabIndex = 14;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(695, 172);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 17);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Ganadas";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(695, 142);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(98, 17);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Total Jugadas";
+            // 
+            // txtTotalJugadas
+            // 
+            this.txtTotalJugadas.Location = new System.Drawing.Point(799, 139);
+            this.txtTotalJugadas.Name = "txtTotalJugadas";
+            this.txtTotalJugadas.ReadOnly = true;
+            this.txtTotalJugadas.Size = new System.Drawing.Size(100, 22);
+            this.txtTotalJugadas.TabIndex = 17;
+            // 
+            // txtGanadas
+            // 
+            this.txtGanadas.Location = new System.Drawing.Point(799, 172);
+            this.txtGanadas.Name = "txtGanadas";
+            this.txtGanadas.ReadOnly = true;
+            this.txtGanadas.Size = new System.Drawing.Size(100, 22);
+            this.txtGanadas.TabIndex = 18;
+            // 
+            // fotoPerfil
+            // 
+            this.fotoPerfil.Location = new System.Drawing.Point(799, 68);
+            this.fotoPerfil.Margin = new System.Windows.Forms.Padding(4);
+            this.fotoPerfil.Name = "fotoPerfil";
+            this.fotoPerfil.Size = new System.Drawing.Size(72, 64);
+            this.fotoPerfil.TabIndex = 19;
+            this.fotoPerfil.TabStop = false;
+            // 
             // FrmJuego
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -211,6 +262,11 @@
             this.BackgroundImage = global::BlackJack.Properties.Resources._1_split33;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(913, 530);
+            this.Controls.Add(this.fotoPerfil);
+            this.Controls.Add(this.txtGanadas);
+            this.Controls.Add(this.txtTotalJugadas);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.btnQuedarse);
             this.Controls.Add(this.c2);
@@ -238,6 +294,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.c4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.c3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.c2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fotoPerfil)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,5 +317,10 @@
         private System.Windows.Forms.PictureBox c2;
         private System.Windows.Forms.Button btnQuedarse;
         private System.Windows.Forms.TextBox txtTotal;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtTotalJugadas;
+        private System.Windows.Forms.TextBox txtGanadas;
+        private System.Windows.Forms.PictureBox fotoPerfil;
     }
 }

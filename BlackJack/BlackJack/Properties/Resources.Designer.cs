@@ -103,6 +103,16 @@ namespace BlackJack.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap can_stock_photo_csp8697630 {
+            get {
+                object obj = ResourceManager.GetObject("can-stock-photo_csp8697630", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap face {
             get {
                 object obj = ResourceManager.GetObject("face", resourceCulture);
@@ -136,6 +146,16 @@ namespace BlackJack.Properties {
         internal static System.Drawing.Bitmap LOGIN {
             get {
                 object obj = ResourceManager.GetObject("LOGIN", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap naipe {
+            get {
+                object obj = ResourceManager.GetObject("naipe", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
