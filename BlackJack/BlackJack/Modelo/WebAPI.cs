@@ -11,14 +11,14 @@ namespace BlackJack.Modelo
     {
         public static Carta requestCard(string code)
         {
-            Uri url = new Uri(@"https://deckofcardsapi.com/api/deck/" + code + "/draw/?count=1");
-            WebRequest webRequest = WebRequest.Create(url);
+            Uri uri = new Uri(@"https://deckofcardsapi.com/api/deck/" + code + "/draw/?count=1");
+            WebRequest webRequest = WebRequest.Create(uri);
             WebResponse response = webRequest.GetResponse();
             StreamReader streamReader = new StreamReader(response.GetResponseStream());
             String responseData = streamReader.ReadToEnd();
             var outObject = JsonConvert.DeserializeObject<MasoCartas>(responseData);
             Carta oCarta = (Carta)outObject.cards[0];
-            Juego.Partida.Remaining = outObject.remaining;
+            Juego.Partida.remaining = outObject.remaining;
             return oCarta;
         }
         public static List<Carta> requestCardStartGame(string code)
@@ -34,7 +34,7 @@ namespace BlackJack.Modelo
             List.Add(Carta);
             Carta = (Carta)outObject.cards[1];
             List.Add(Carta);
-            Juego.Partida.Remaining = outObject.remaining;
+            Juego.Partida.remaining = outObject.remaining;
             return List;
         }
 
@@ -47,7 +47,7 @@ namespace BlackJack.Modelo
             String responseData = streamReader.ReadToEnd();
             Partida oPartida = JsonConvert.DeserializeObject<Partida>(responseData);
             Juego.Partida = oPartida;
-            Juego.Partida.Remaining = Juego.Partida.Remaining - 2;
+            Juego.Partida.remaining = Juego.Partida.remaining - 2;
         }
 
 

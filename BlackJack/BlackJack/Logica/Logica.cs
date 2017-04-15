@@ -25,7 +25,7 @@ namespace BlackJack.Logica
             }
             else if (c.Value.Equals("ACE"))
             {
-                if (total <= 11)
+                if (total <= 10)
                 {
                     suma = suma + 11;
                 }
