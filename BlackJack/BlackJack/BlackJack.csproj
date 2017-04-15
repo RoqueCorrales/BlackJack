@@ -63,7 +63,6 @@
     <Compile Include="Modelo\DATA.cs" />
     <Compile Include="Modelo\Jugador.cs" />
     <Compile Include="Modelo\MasoCartas.cs" />
-    <Compile Include="Modelo\MasoJuego.cs" />
     <Compile Include="Modelo\Partida.cs" />
     <Compile Include="Modelo\WebAPI.cs" />
     <Compile Include="Models\Generated\Database.cs">

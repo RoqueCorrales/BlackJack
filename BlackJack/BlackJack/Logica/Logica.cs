@@ -19,13 +19,14 @@ namespace BlackJack.Logica
         public  int sumar(Carta c , int total,List<Carta> lista)
         {
             int suma = 0;
+            
             if (c.Value.Equals("QUEEN") || c.Value.Equals("KING") || c.Value.Equals("JACK"))
             {
                 suma = suma  + 10;
             }
             else if (c.Value.Equals("ACE"))
             {
-                if (total <= 11)
+                if (total <= 10)
                 {
                     suma = suma + 11;
                 }

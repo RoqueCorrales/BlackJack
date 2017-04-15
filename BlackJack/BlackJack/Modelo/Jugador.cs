@@ -15,6 +15,10 @@ namespace BlackJack.Modelo
         public string apellido { get; set; }
         public int partidasJugadas { get; set; }
         public int partidasGanadas { get; set; }
+
+        public string foto { get; set; }
+
+        public string genero { get; set; }
        
 
         public Jugador()
