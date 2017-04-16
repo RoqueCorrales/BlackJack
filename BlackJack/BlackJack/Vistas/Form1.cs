@@ -58,7 +58,7 @@ namespace BlackJack
                     string foto = string.Format("https://graph.facebook.com/{0}/picture?type={1}", id, "square");
                     Modelo.Jugador j = new Modelo.Jugador();
                     j.nombre = name;
-                    j.idFacebook = id;
+                    j.idfacebook = id;
                     j.apellido = last_name;
                     j.genero = gender;
                     j.foto = foto;

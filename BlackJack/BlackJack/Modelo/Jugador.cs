@@ -10,14 +10,12 @@ namespace BlackJack.Modelo
     {
      
         public int id { get; set; }
-        public string idFacebook { get; set; }
+        public string idfacebook { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
-        public int partidasJugadas { get; set; }
-        public int partidasGanadas { get; set; }
-
+        public int partidasjugadas { get; set; }
+        public int partidasganadas { get; set; }
         public string foto { get; set; }
-
         public string genero { get; set; }
        
 

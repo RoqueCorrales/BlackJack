@@ -15,23 +15,48 @@ namespace BlackJack.Modelo
             db.Insert("usuario", jugador);
         }
 
-        public Jugador SelectLogin(string idFacebook)
+        public Jugador SelectLogin(string idfacebook)
         {
             Jugador p = new Jugador();
-            foreach (var a in db.Query<Jugador>("SELECT * FROM usuario Where idFacebook = '" + idFacebook + "'"))
+            foreach (var a in db.Query<Jugador>("SELECT * FROM usuario Where idfacebook = '" + idfacebook + "'"))
             {
 
                 p.id = a.id;
-                p.idFacebook = a.idFacebook;
+                p.idfacebook = a.idfacebook;
                 p.nombre = a.nombre;
                 p.apellido = a.apellido;
-                p.partidasGanadas = a.partidasGanadas;
-                p.partidasJugadas = a.partidasJugadas;
+                p.partidasganadas = a.partidasganadas;
+                p.partidasjugadas = a.partidasjugadas;
                 p.genero = a.genero;
+                p.foto = a.foto;
              
             }
 
             return p;
+        }
+
+        public Boolean SelectID(string idFacebook)
+        {
+            Jugador p = new Jugador();
+            List<Jugador> j = new List<Jugador>();
+            foreach (var a in db.Query<Jugador>("SELECT * FROM usuario Where idfacebook = '" + idFacebook + "'"))
+            {
+
+                p.id = a.id;
+                p.idfacebook = a.idfacebook;
+                p.nombre = a.nombre;
+                p.apellido = a.apellido;
+                p.partidasganadas = a.partidasganadas;
+                p.partidasjugadas = a.partidasjugadas;
+                p.genero = a.genero;
+                j.Add(p);
+
+            }
+            if (j.Count==0)
+            {
+                return true;
+            }
+            return false;
         }
 
         public void UpdateJugador(Jugador p)

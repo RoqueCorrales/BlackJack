@@ -19,7 +19,7 @@ namespace BlackJack.Vistas
         public Controlador.WebApi api;
         private int jugadasJugador;
         private int ganadasJugador;
-      //  private Modelo.DATA data;
+        private Modelo.DATA data;
         public FrmJuego()
         {
 
@@ -30,11 +30,11 @@ namespace BlackJack.Vistas
             jugadasJugador = 0;
             
             log = new Logica.Logica();
-           // data = new Modelo.DATA();
+            data = new Modelo.DATA();
             barajaDealer = new Baraja();
             barajaJuador = new Baraja();
             api = new Controlador.WebApi();
-            cartaOculta = @"C:\Users\roke1\Desktop\Utn\4 cuatri\Progra 3\BlackJack\Imagenessa\naipe.jpg";
+            cartaOculta = @"C:\Users\Josue\Desktop\Proyecto Git\BlackJack\Imagenessa\naipe.jpg";
             limpiar();
             fotoPerfil.LoadAsync(jugador.foto);
             WebApi.newGame();
@@ -51,14 +51,15 @@ namespace BlackJack.Vistas
             log = new Logica.Logica();
             barajaDealer = new Baraja();
             barajaJuador = new Baraja();
-            cartaOculta = @"C:\Users\roke1\Desktop\Utn\4 cuatri\Progra 3\BlackJack\Imagenessa\naipe.jpg";
+            cartaOculta = @"C:\Users\Josue\Desktop\Proyecto Git\BlackJack\Imagenessa\naipe.jpg";
             limpiar();
             WebApi.newGame();
-            this.jugador = new Jugador();
             fotoPerfil.LoadAsync(jugador.foto);
-            ganadasJugador = 0;
-            jugadasJugador = 0;
-           // data = new Modelo.DATA();
+            data = new Modelo.DATA();
+            this.jugador = logeadoJugado(jugador);
+            ganadasJugador = jugador.partidasganadas;
+            jugadasJugador = jugador.partidasjugadas;
+
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -133,6 +134,8 @@ namespace BlackJack.Vistas
             {
                 c1.ImageLocation = barajaDealer.cartas[0].Image;
                 MessageBox.Show("Has Perdido, Dealer gana con un total de : " + totalDealear);
+                jugador.partidasjugadas = jugador.partidasjugadas + 1;
+                Accion(jugador);
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
                 btnNuevo.Visible = true;
@@ -216,8 +219,9 @@ namespace BlackJack.Vistas
             if(totalDealear> totalJugador && totalDealear <= 21){
                 c1.ImageLocation = barajaDealer.cartas[0].Image;
                 MessageBox.Show("Has Perdido, Dealer gana con un total de : " + totalDealear);
-                jugador.partidasJugadas = jugadasJugador + 1;
-              //  data.InsterJugador(jugador);
+                jugador.partidasjugadas = jugador.partidasjugadas + 1;
+                Accion(jugador);
+
 
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
@@ -228,8 +232,8 @@ namespace BlackJack.Vistas
             {
                 c1.ImageLocation = barajaDealer.cartas[0].Image;
                 MessageBox.Show("Partida Empatada, Con un total de : " + totalJugador);
-                jugador.partidasJugadas = jugadasJugador + 1;
-             //   data.InsterJugador(jugador);
+                jugador.partidasjugadas = jugador.partidasjugadas + 1;
+                Accion(jugador);
 
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
@@ -239,9 +243,9 @@ namespace BlackJack.Vistas
             {
                 c1.ImageLocation = barajaDealer.cartas[0].Image;
                 MessageBox.Show("Has Ganado, Con un total de : " + totalJugador);
-                jugador.partidasJugadas = jugadasJugador + 1;
-                jugador.partidasGanadas = ganadasJugador + 1;
-             //   data.InsterJugador(jugador);
+                jugador.partidasjugadas = jugador.partidasjugadas + 1;
+                jugador.partidasganadas = jugador.partidasganadas + 1;
+                Accion(jugador);
 
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
@@ -255,5 +259,32 @@ namespace BlackJack.Vistas
             WebApi.reshuffleCards(Juego.Partida.deck_Id);
             MessageBox.Show("Cartas revueltas.");
         }
+        public void Accion(Jugador jugador)
+        {
+            if (data.SelectID(jugador.idfacebook))
+            {
+                data.InsterJugador(jugador);
+            }
+            else
+            {
+                data.UpdateJugador(jugador);
+            }
+        }
+        public Jugador logeadoJugado(Jugador jugador)
+        {
+            Jugador a = new Jugador();
+             a = data.SelectLogin(jugador.idfacebook);
+            if (a == null)
+            {
+                
+                return jugador;
+            }
+            else
+            {
+        
+                return a;
+            }
+        }
     }
+   
 }
