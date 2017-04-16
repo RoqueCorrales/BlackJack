@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace BlackJack.Modelo
 {
-    class WebAPI
+    public class WebAPI
     {
         public static Carta requestCard(string code)
         {
@@ -17,9 +17,9 @@ namespace BlackJack.Modelo
             StreamReader streamReader = new StreamReader(response.GetResponseStream());
             String responseData = streamReader.ReadToEnd();
             var outObject = JsonConvert.DeserializeObject<MasoCartas>(responseData);
-            Carta oCarta = (Carta)outObject.cards[0];
+            Carta carta = (Carta)outObject.cards[0];
             Juego.Partida.remaining = outObject.remaining;
-            return oCarta;
+            return carta;
         }
         public static List<Carta> requestCardStartGame(string code)
         {
@@ -45,8 +45,8 @@ namespace BlackJack.Modelo
             WebResponse response = webRequest.GetResponse();
             StreamReader streamReader = new StreamReader(response.GetResponseStream());
             String responseData = streamReader.ReadToEnd();
-            Partida oPartida = JsonConvert.DeserializeObject<Partida>(responseData);
-            Juego.Partida = oPartida;
+            Partida partida = JsonConvert.DeserializeObject<Partida>(responseData);
+            Juego.Partida = partida;
             Juego.Partida.remaining = Juego.Partida.remaining - 2;
         }
 
@@ -59,8 +59,8 @@ namespace BlackJack.Modelo
             WebResponse response = webRequest.GetResponse();
             StreamReader streamReader = new StreamReader(response.GetResponseStream());
             String responseData = streamReader.ReadToEnd();
-            Partida oPartida = JsonConvert.DeserializeObject<Partida>(responseData);
-            Juego.Partida = oPartida;
+            Partida partida = JsonConvert.DeserializeObject<Partida>(responseData);
+            Juego.Partida = partida;
         }
 
     }

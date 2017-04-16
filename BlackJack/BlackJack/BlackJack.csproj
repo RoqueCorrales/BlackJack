@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controlador\WebApi.cs" />
     <Compile Include="Logica\Juego.cs" />
     <Compile Include="Logica\Logica.cs" />
     <Compile Include="Modelo\Baraja.cs" />
@@ -165,9 +166,7 @@
   <ItemGroup>
     <None Include="Resources\LOGIN.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controlador\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\9507947.jpg" />
   </ItemGroup>

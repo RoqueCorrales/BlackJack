@@ -1,5 +1,6 @@
 ﻿using BlackJack.Logica;
 using BlackJack.Modelo;
+using BlackJack.Controlador;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -15,6 +16,7 @@ namespace BlackJack.Vistas
         private Baraja barajaDealer;
         string cartaOculta ;
         private Jugador jugador;
+        public Controlador.WebApi api;
         public FrmJuego()
         {
 
@@ -24,9 +26,12 @@ namespace BlackJack.Vistas
             log = new Logica.Logica();
             barajaDealer = new Baraja();
             barajaJuador = new Baraja();
+            api = new Controlador.WebApi();
             cartaOculta = @"C:\Users\roke1\Desktop\Utn\4 cuatri\Progra 3\BlackJack\Imagenessa\naipe.jpg";
             limpiar();
-            WebAPI.newGame();
+            WebApi.newGame();
+            
+            
 
            
         }
@@ -40,7 +45,7 @@ namespace BlackJack.Vistas
             barajaJuador = new Baraja();
             cartaOculta = @"C:\Users\roke1\Desktop\Utn\4 cuatri\Progra 3\BlackJack\Imagenessa\naipe.jpg";
             limpiar();
-            WebAPI.newGame();
+            WebApi.newGame();
             this.jugador = new Jugador();
             fotoPerfil.LoadAsync(jugador.foto);
         }
@@ -48,7 +53,7 @@ namespace BlackJack.Vistas
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             limpiar();
-            WebAPI.newGame();
+            WebApi.newGame();
             Iniciar();
             IniciarDealear();
             btnNuevo.Visible = false;
@@ -107,7 +112,7 @@ namespace BlackJack.Vistas
 
         private void btnCarta_Click(object sender, EventArgs e)
         {
-            Carta carta = WebAPI.requestCard(Juego.Partida.deck_Id);
+            Carta carta = WebApi.requestCard(Juego.Partida.deck_Id);
             this.mostar(carta);
             txtTotal.Text = Juego.Partida.remaining.ToString();
             totalJugador = totalJugador + log.sumar(carta, totalJugador,barajaJuador.cartas);
@@ -126,7 +131,7 @@ namespace BlackJack.Vistas
         }
 
         public void Iniciar() { 
-        List<Carta> Lista = WebAPI.requestCardStartGame(Juego.Partida.deck_Id);
+        List<Carta> Lista = WebApi.requestCardStartGame(Juego.Partida.deck_Id);
             foreach (Carta item in Lista)
             {
                 mostar(item);
@@ -139,7 +144,7 @@ namespace BlackJack.Vistas
         }
         public void IniciarDealear()
         {
-            List<Carta> Lista = WebAPI.requestCardStartGame(Juego.Partida.deck_Id);
+            List<Carta> Lista = WebApi.requestCardStartGame(Juego.Partida.deck_Id);
             foreach (Carta item in Lista)
             {
                 mostrarDealear(item);
@@ -186,7 +191,7 @@ namespace BlackJack.Vistas
            
             while(totalDealear <= totalJugador)
             {
-                Carta carta = WebAPI.requestCard(Juego.Partida.deck_Id);
+                Carta carta = WebApi.requestCard(Juego.Partida.deck_Id);
                 mostrarDealear(carta);
                 totalDealear = totalDealear + log.sumar(carta, totalDealear,barajaDealer.cartas);
                 barajaDealer.cartas.Add(carta);
@@ -226,7 +231,7 @@ namespace BlackJack.Vistas
 
         private void btnRebajar_Click(object sender, EventArgs e)
         {
-            WebAPI.reshuffleCards(Juego.Partida.deck_Id);
+            WebApi.reshuffleCards(Juego.Partida.deck_Id);
             MessageBox.Show("Cartas revueltas.");
         }
     }
