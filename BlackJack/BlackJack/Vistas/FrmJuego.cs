@@ -19,6 +19,7 @@ namespace BlackJack.Vistas
         public Controlador.WebApi api;
         private int jugadasJugador;
         private int ganadasJugador;
+      //  private Modelo.DATA data;
         public FrmJuego()
         {
 
@@ -29,6 +30,7 @@ namespace BlackJack.Vistas
             jugadasJugador = 0;
             
             log = new Logica.Logica();
+           // data = new Modelo.DATA();
             barajaDealer = new Baraja();
             barajaJuador = new Baraja();
             api = new Controlador.WebApi();
@@ -56,6 +58,7 @@ namespace BlackJack.Vistas
             fotoPerfil.LoadAsync(jugador.foto);
             ganadasJugador = 0;
             jugadasJugador = 0;
+           // data = new Modelo.DATA();
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -213,8 +216,8 @@ namespace BlackJack.Vistas
             if(totalDealear> totalJugador && totalDealear <= 21){
                 c1.ImageLocation = barajaDealer.cartas[0].Image;
                 MessageBox.Show("Has Perdido, Dealer gana con un total de : " + totalDealear);
-                jugador.partidasJugadas = jugadasJugador + 1; 
-                //Base Datos
+                jugador.partidasJugadas = jugadasJugador + 1;
+              //  data.InsterJugador(jugador);
 
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
@@ -226,7 +229,7 @@ namespace BlackJack.Vistas
                 c1.ImageLocation = barajaDealer.cartas[0].Image;
                 MessageBox.Show("Partida Empatada, Con un total de : " + totalJugador);
                 jugador.partidasJugadas = jugadasJugador + 1;
-                // Base Datos
+             //   data.InsterJugador(jugador);
 
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
@@ -238,6 +241,8 @@ namespace BlackJack.Vistas
                 MessageBox.Show("Has Ganado, Con un total de : " + totalJugador);
                 jugador.partidasJugadas = jugadasJugador + 1;
                 jugador.partidasGanadas = ganadasJugador + 1;
+             //   data.InsterJugador(jugador);
+
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
                 btnNuevo.Visible = true;

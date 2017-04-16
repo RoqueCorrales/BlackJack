@@ -54,9 +54,11 @@ namespace BlackJack
                     var name = (string)result["first_name"];
                     var last_name = (string)result["last_name"];
                     var gender = (string)result["gender"];
+                    
                     string foto = string.Format("https://graph.facebook.com/{0}/picture?type={1}", id, "square");
                     Modelo.Jugador j = new Modelo.Jugador();
                     j.nombre = name;
+                    j.idFacebook = id;
                     j.apellido = last_name;
                     j.genero = gender;
                     j.foto = foto;

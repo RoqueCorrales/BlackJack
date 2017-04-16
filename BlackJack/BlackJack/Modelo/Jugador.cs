@@ -10,7 +10,7 @@ namespace BlackJack.Modelo
     {
      
         public int id { get; set; }
-        public int idFacebook { get; set; }
+        public string idFacebook { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
         public int partidasJugadas { get; set; }
