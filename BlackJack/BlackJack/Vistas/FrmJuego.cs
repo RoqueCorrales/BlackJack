@@ -17,18 +17,24 @@ namespace BlackJack.Vistas
         string cartaOculta ;
         private Jugador jugador;
         public Controlador.WebApi api;
+        private int jugadasJugador;
+        private int ganadasJugador;
         public FrmJuego()
         {
 
             InitializeComponent();
             totalDealear = 0;
             totalJugador = 0;
+            ganadasJugador = 0;
+            jugadasJugador = 0;
+            
             log = new Logica.Logica();
             barajaDealer = new Baraja();
             barajaJuador = new Baraja();
             api = new Controlador.WebApi();
             cartaOculta = @"C:\Users\roke1\Desktop\Utn\4 cuatri\Progra 3\BlackJack\Imagenessa\naipe.jpg";
             limpiar();
+            fotoPerfil.LoadAsync(jugador.foto);
             WebApi.newGame();
             
             
@@ -48,6 +54,8 @@ namespace BlackJack.Vistas
             WebApi.newGame();
             this.jugador = new Jugador();
             fotoPerfil.LoadAsync(jugador.foto);
+            ganadasJugador = 0;
+            jugadasJugador = 0;
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -205,6 +213,9 @@ namespace BlackJack.Vistas
             if(totalDealear> totalJugador && totalDealear <= 21){
                 c1.ImageLocation = barajaDealer.cartas[0].Image;
                 MessageBox.Show("Has Perdido, Dealer gana con un total de : " + totalDealear);
+                jugador.partidasJugadas = jugadasJugador + 1; 
+                //Base Datos
+
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
                 btnNuevo.Visible = true;
@@ -214,6 +225,9 @@ namespace BlackJack.Vistas
             {
                 c1.ImageLocation = barajaDealer.cartas[0].Image;
                 MessageBox.Show("Partida Empatada, Con un total de : " + totalJugador);
+                jugador.partidasJugadas = jugadasJugador + 1;
+                // Base Datos
+
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
                 btnNuevo.Visible = true;
@@ -222,6 +236,8 @@ namespace BlackJack.Vistas
             {
                 c1.ImageLocation = barajaDealer.cartas[0].Image;
                 MessageBox.Show("Has Ganado, Con un total de : " + totalJugador);
+                jugador.partidasJugadas = jugadasJugador + 1;
+                jugador.partidasGanadas = ganadasJugador + 1;
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
                 btnNuevo.Visible = true;
