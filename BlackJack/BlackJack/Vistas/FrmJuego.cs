@@ -131,8 +131,8 @@ namespace BlackJack.Vistas
             Carta carta = WebApi.requestCard(Juego.Partida.deck_Id);
             this.mostar(carta);
             txtTotal.Text = Juego.Partida.remaining.ToString();
-            totalJugador = totalJugador + log.sumar(carta, totalJugador,barajaJuador.cartas);
-            barajaJuador.cartas.Add(carta);
+            totalJugador =  log.totalCartas(carta, barajaJuador.cartas);
+           // barajaJuador.cartas.Add(carta);
 
             if(totalJugador > 21)
             {
@@ -155,8 +155,8 @@ namespace BlackJack.Vistas
             {
                 mostar(item);
                
-                totalJugador = totalJugador + log.sumar(item, totalJugador,barajaJuador.cartas);
-                barajaJuador.cartas.Add(item);
+                totalJugador = log.totalCartas(item, barajaJuador.cartas);
+               // barajaJuador.cartas.Add(item);
                 txtTotal.Text = Juego.Partida.remaining.ToString();
             }
 
@@ -168,8 +168,8 @@ namespace BlackJack.Vistas
             {
                 mostrarDealear(item);
                
-                totalDealear = totalDealear + log.sumar(item, totalDealear,barajaDealer.cartas);
-                barajaDealer.cartas.Add(item);
+                totalDealear =  log.totalCartas(item, barajaDealer.cartas);
+                //barajaDealer.cartas.Add(item);
                 txtTotal.Text = Juego.Partida.remaining.ToString();
             }
 
@@ -212,8 +212,8 @@ namespace BlackJack.Vistas
             {
                 Carta carta = WebApi.requestCard(Juego.Partida.deck_Id);
                 mostrarDealear(carta);
-                totalDealear = totalDealear + log.sumar(carta, totalDealear,barajaDealer.cartas);
-                barajaDealer.cartas.Add(carta);
+                totalDealear =  log.totalCartas(carta, barajaDealer.cartas);
+              //  barajaDealer.cartas.Add(carta);
                 txtTotal.Text = Juego.Partida.remaining.ToString();
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
