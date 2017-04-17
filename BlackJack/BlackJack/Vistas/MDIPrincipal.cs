@@ -54,8 +54,15 @@ namespace BlackJack.Vistas
         {
             Form1 frm = new Form1(_accessToken);
             frm.Show();
-            this.Close();
+            this.Hide();
 
+
+        }
+
+        private void MDIPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Form1 frm = new Form1(_accessToken);
+            Application.Exit();
 
         }
     }

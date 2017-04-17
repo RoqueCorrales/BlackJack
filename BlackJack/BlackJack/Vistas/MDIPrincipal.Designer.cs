@@ -72,7 +72,7 @@
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(178, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(63, 6);
             // 
             // menuStrip
             // 
@@ -129,6 +129,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MDIPrincipal";
             this.Text = "MDIPrincipal";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MDIPrincipal_FormClosing);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.menuStrip.ResumeLayout(false);

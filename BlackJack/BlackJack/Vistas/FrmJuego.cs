@@ -17,8 +17,7 @@ namespace BlackJack.Vistas
         string cartaOculta ;
         private Jugador jugador;
         public Controlador.WebApi api;
-        private int jugadasJugador;
-        private int ganadasJugador;
+       
         private Modelo.DATA data;
         public FrmJuego()
         {
@@ -26,8 +25,7 @@ namespace BlackJack.Vistas
             InitializeComponent();
             totalDealear = 0;
             totalJugador = 0;
-            ganadasJugador = 0;
-            jugadasJugador = 0;
+         
             
             log = new Logica.Logica();
             data = new Modelo.DATA();
@@ -38,10 +36,13 @@ namespace BlackJack.Vistas
             limpiar();
             fotoPerfil.LoadAsync(jugador.foto);
             WebApi.newGame();
-            
-            
+            txtTotalJugadas.Text = jugador.partidasjugadas.ToString();
+            txtGanadas.Text = jugador.partidasganadas.ToString();
+            btnCarta.Visible = false;
+            btnQuedarse.Visible = false;
 
-           
+
+
         }
         public FrmJuego( Jugador jugador)
         {
@@ -51,15 +52,16 @@ namespace BlackJack.Vistas
             log = new Logica.Logica();
             barajaDealer = new Baraja();
             barajaJuador = new Baraja();
-            cartaOculta = @"C:\Users\Josue\Desktop\Proyecto Git\BlackJack\Imagenessa\naipe.jpg";
+            cartaOculta = @"C:\Users\roke1\Desktop\Utn\4 cuatri\Progra 3\BlackJack\Imagenessa\naipe.jpg";
             limpiar();
             WebApi.newGame();
             fotoPerfil.LoadAsync(jugador.foto);
             data = new Modelo.DATA();
             this.jugador = logeadoJugado(jugador);
-            ganadasJugador = jugador.partidasganadas;
-            jugadasJugador = jugador.partidasjugadas;
-
+            txtTotalJugadas.Text = this.jugador.partidasjugadas.ToString();
+            txtGanadas.Text = this.jugador.partidasganadas.ToString();
+            btnCarta.Visible = false;
+            btnQuedarse.Visible = false;
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -69,6 +71,8 @@ namespace BlackJack.Vistas
             Iniciar();
             IniciarDealear();
             btnNuevo.Visible = false;
+            btnQuedarse.Visible = true;
+            btnCarta.Visible = true;
 
 
         }
@@ -135,6 +139,7 @@ namespace BlackJack.Vistas
                 c1.ImageLocation = barajaDealer.cartas[0].Image;
                 MessageBox.Show("Has Perdido, Dealer gana con un total de : " + totalDealear);
                 jugador.partidasjugadas = jugador.partidasjugadas + 1;
+                txtTotalJugadas.Text = jugador.partidasjugadas.ToString();
                 Accion(jugador);
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
@@ -220,6 +225,7 @@ namespace BlackJack.Vistas
                 c1.ImageLocation = barajaDealer.cartas[0].Image;
                 MessageBox.Show("Has Perdido, Dealer gana con un total de : " + totalDealear);
                 jugador.partidasjugadas = jugador.partidasjugadas + 1;
+                txtTotalJugadas.Text = jugador.partidasjugadas.ToString();
                 Accion(jugador);
 
 
@@ -233,6 +239,7 @@ namespace BlackJack.Vistas
                 c1.ImageLocation = barajaDealer.cartas[0].Image;
                 MessageBox.Show("Partida Empatada, Con un total de : " + totalJugador);
                 jugador.partidasjugadas = jugador.partidasjugadas + 1;
+                txtTotalJugadas.Text = jugador.partidasjugadas.ToString();
                 Accion(jugador);
 
                 btnQuedarse.Visible = false;
@@ -245,6 +252,8 @@ namespace BlackJack.Vistas
                 MessageBox.Show("Has Ganado, Con un total de : " + totalJugador);
                 jugador.partidasjugadas = jugador.partidasjugadas + 1;
                 jugador.partidasganadas = jugador.partidasganadas + 1;
+                txtTotalJugadas.Text = jugador.partidasjugadas.ToString();
+                txtGanadas.Text = jugador.partidasganadas.ToString();
                 Accion(jugador);
 
                 btnQuedarse.Visible = false;
@@ -274,7 +283,7 @@ namespace BlackJack.Vistas
         {
             Jugador a = new Jugador();
              a = data.SelectLogin(jugador.idfacebook);
-            if (a == null)
+            if (a.nombre == null)
             {
                 
                 return jugador;

@@ -38,6 +38,10 @@
             this.lblApellido = new System.Windows.Forms.Label();
             this.lblGenero = new System.Windows.Forms.Label();
             this.fotoPerfil = new System.Windows.Forms.PictureBox();
+            this.txtGanadas = new System.Windows.Forms.TextBox();
+            this.txtTotalJugadas = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.fotoPerfil)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,8 +91,8 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(136, 219);
-            this.btnOK.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnOK.Location = new System.Drawing.Point(323, 290);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(4);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(93, 32);
             this.btnOK.TabIndex = 4;
@@ -141,11 +145,45 @@
             // fotoPerfil
             // 
             this.fotoPerfil.Location = new System.Drawing.Point(16, 52);
-            this.fotoPerfil.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.fotoPerfil.Margin = new System.Windows.Forms.Padding(4);
             this.fotoPerfil.Name = "fotoPerfil";
             this.fotoPerfil.Size = new System.Drawing.Size(72, 64);
             this.fotoPerfil.TabIndex = 5;
             this.fotoPerfil.TabStop = false;
+            // 
+            // txtGanadas
+            // 
+            this.txtGanadas.Location = new System.Drawing.Point(237, 231);
+            this.txtGanadas.Name = "txtGanadas";
+            this.txtGanadas.ReadOnly = true;
+            this.txtGanadas.Size = new System.Drawing.Size(100, 22);
+            this.txtGanadas.TabIndex = 22;
+            // 
+            // txtTotalJugadas
+            // 
+            this.txtTotalJugadas.Location = new System.Drawing.Point(237, 198);
+            this.txtTotalJugadas.Name = "txtTotalJugadas";
+            this.txtTotalJugadas.ReadOnly = true;
+            this.txtTotalJugadas.Size = new System.Drawing.Size(100, 22);
+            this.txtTotalJugadas.TabIndex = 21;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(133, 201);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(98, 17);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "Total Jugadas";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(133, 231);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(66, 17);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Ganadas";
             // 
             // FrmPerfil
             // 
@@ -153,7 +191,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::BlackJack.Properties.Resources.BlackJackbottem;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(416, 277);
+            this.ClientSize = new System.Drawing.Size(481, 349);
+            this.Controls.Add(this.txtGanadas);
+            this.Controls.Add(this.txtTotalJugadas);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.lblGenero);
             this.Controls.Add(this.lblApellido);
             this.Controls.Add(this.lblNombre);
@@ -164,7 +206,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmPerfil";
             this.Text = "FrmPerfil";
             ((System.ComponentModel.ISupportInitialize)(this.fotoPerfil)).EndInit();
@@ -185,5 +227,9 @@
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.Label lblApellido;
         private System.Windows.Forms.Label lblGenero;
+        private System.Windows.Forms.TextBox txtGanadas;
+        private System.Windows.Forms.TextBox txtTotalJugadas;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }
