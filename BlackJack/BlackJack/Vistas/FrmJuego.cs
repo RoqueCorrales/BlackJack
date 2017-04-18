@@ -14,10 +14,10 @@ namespace BlackJack.Vistas
         private int totalDealear;
         private Baraja barajaJuador;
         private Baraja barajaDealer;
-        string cartaOculta ;
+        string cartaOculta;
         private Jugador jugador;
         public Controlador.WebApi api;
-        private Controlador.Data dataCon = new Data(); 
+        private Controlador.Data dataCon = new Data();
         private Modelo.DATA data;
         private PartidaJugada par;
         public FrmJuego()
@@ -26,8 +26,8 @@ namespace BlackJack.Vistas
             InitializeComponent();
             totalDealear = 0;
             totalJugador = 0;
-         
-            
+
+
             log = new Logica.Logica();
             data = new Modelo.DATA();
             barajaDealer = new Baraja();
@@ -45,7 +45,7 @@ namespace BlackJack.Vistas
 
 
         }
-        public FrmJuego( Jugador jugador)
+        public FrmJuego(Jugador jugador)
         {
             InitializeComponent();
             totalDealear = 0;
@@ -106,7 +106,7 @@ namespace BlackJack.Vistas
             p.fecha = DateTime.Now;
             p.idjugador = jugador.idfacebook;
             p.deck_id = Juego.Partida.deck_Id;
-            
+
             return p;
         }
         private void mostrarDealear(Carta c)
@@ -161,17 +161,17 @@ namespace BlackJack.Vistas
 
             }
         }
-      
+
 
         private void btnCarta_Click(object sender, EventArgs e)
         {
             Carta carta = WebApi.requestCard(Juego.Partida.deck_Id);
             this.mostar(carta);
             txtTotal.Text = Juego.Partida.remaining.ToString();
-            totalJugador =  log.totalCartas(carta, barajaJuador.cartas);
-           // barajaJuador.cartas.Add(carta);
+            totalJugador = log.totalCartas(carta, barajaJuador.cartas);
+            // barajaJuador.cartas.Add(carta);
 
-            if(totalJugador > 21)
+            if (totalJugador > 21)
             {
                 c1.ImageLocation = barajaDealer.cartas[0].Image;
                 MessageBox.Show("Has Perdido, Dealer gana con un total de : " + totalDealear);
@@ -180,7 +180,7 @@ namespace BlackJack.Vistas
                 Accion(jugador);
                 par = prepararPartidaJugada();
                 par.ganaste = false;
-               // dataCon.insertarPartidaJugada(par);
+                // dataCon.insertarPartidaJugada(par);
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
                 btnNuevo.Visible = true;
@@ -189,7 +189,8 @@ namespace BlackJack.Vistas
 
         }
 
-        public void Iniciar() {
+        public void Iniciar()
+        {
 
 
             if (MessageBox.Show("Quiere rebarajar el maso ?", "Rebarajar Maso", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -200,9 +201,9 @@ namespace BlackJack.Vistas
             foreach (Carta item in Lista)
             {
                 mostar(item);
-               
+
                 totalJugador = log.totalCartas(item, barajaJuador.cartas);
-               
+
                 txtTotal.Text = Juego.Partida.remaining.ToString();
             }
 
@@ -213,38 +214,45 @@ namespace BlackJack.Vistas
             foreach (Carta item in Lista)
             {
                 mostrarDealear(item);
-               
-                totalDealear =  log.totalCartas(item, barajaDealer.cartas);
-               
+
+                totalDealear = log.totalCartas(item, barajaDealer.cartas);
+
                 txtTotal.Text = Juego.Partida.remaining.ToString();
             }
 
         }
 
 
-     
+
         private void cartaCinco_Click(object sender, EventArgs e)
         {
 
         }
-        
+
         private void btnQuedarse_Click(object sender, EventArgs e)
         {
-           
-            while(totalDealear <= totalJugador)
+
+            quedarse();
+
+        }
+
+        public void quedarse()
+        {
+            while (totalDealear <= totalJugador)
             {
                 Carta carta = WebApi.requestCard(Juego.Partida.deck_Id);
                 mostrarDealear(carta);
-                totalDealear =  log.totalCartas(carta, barajaDealer.cartas);
-              
+                totalDealear = log.totalCartas(carta, barajaDealer.cartas);
+
                 txtTotal.Text = Juego.Partida.remaining.ToString();
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
 
-                
+
 
             }
-            if(totalDealear> totalJugador && totalDealear <= 21){
+            if (totalDealear > totalJugador && totalDealear <= 21)
+            {
                 c1.ImageLocation = barajaDealer.cartas[0].Image;
                 MessageBox.Show("Has Perdido, Dealer gana con un total de : " + totalDealear);
                 jugador.partidasjugadas = jugador.partidasjugadas + 1;
@@ -252,7 +260,7 @@ namespace BlackJack.Vistas
                 Accion(jugador);
                 par = prepararPartidaJugada();
                 par.ganaste = false;
-               // dataCon.insertarPartidaJugada(par);
+                // dataCon.insertarPartidaJugada(par);
 
 
                 btnQuedarse.Visible = false;
@@ -260,7 +268,7 @@ namespace BlackJack.Vistas
                 btnNuevo.Visible = true;
 
             }
-            else if(totalJugador == totalDealear)
+            else if (totalJugador == totalDealear)
             {
                 c1.ImageLocation = barajaDealer.cartas[0].Image;
                 MessageBox.Show("Partida Empatada, Con un total de : " + totalJugador);
@@ -269,7 +277,7 @@ namespace BlackJack.Vistas
                 Accion(jugador);
                 par = prepararPartidaJugada();
                 par.ganaste = false;
-              //  dataCon.insertarPartidaJugada(par);
+                //  dataCon.insertarPartidaJugada(par);
 
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
@@ -286,13 +294,12 @@ namespace BlackJack.Vistas
                 Accion(jugador);
                 par = prepararPartidaJugada();
                 par.ganaste = true;
-              //  dataCon.insertarPartidaJugada(par);
+                //  dataCon.insertarPartidaJugada(par);
 
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
                 btnNuevo.Visible = true;
             }
-
         }
 
         private void btnRebajar_Click(object sender, EventArgs e)
@@ -321,18 +328,23 @@ namespace BlackJack.Vistas
         public Jugador logeadoJugado(Jugador jugador)
         {
             Jugador a = new Jugador();
-             a = data.SelectLogin(jugador.idfacebook);
+            a = data.SelectLogin(jugador.idfacebook);
             if (a.nombre == null)
             {
-                
+
                 return jugador;
             }
             else
             {
-        
+
                 return a;
             }
         }
+
+        private void FrmJuego_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            quedarse();
+            
+        }
     }
-   
 }

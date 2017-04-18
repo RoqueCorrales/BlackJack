@@ -284,6 +284,7 @@
             this.Controls.Add(this.CartaUno);
             this.Name = "FrmJuego";
             this.Text = "FrmJuego";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmJuego_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.CartaUno)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cartaTres)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cartaDos)).EndInit();
