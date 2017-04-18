@@ -48,6 +48,7 @@
             this.txtTotalJugadas = new System.Windows.Forms.TextBox();
             this.txtGanadas = new System.Windows.Forms.TextBox();
             this.fotoPerfil = new System.Windows.Forms.PictureBox();
+            this.lblId = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.CartaUno)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cartaTres)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cartaDos)).BeginInit();
@@ -206,7 +207,7 @@
             // 
             // txtTotal
             // 
-            this.txtTotal.Location = new System.Drawing.Point(721, 12);
+            this.txtTotal.Location = new System.Drawing.Point(712, 39);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(100, 22);
@@ -255,6 +256,14 @@
             this.fotoPerfil.TabIndex = 19;
             this.fotoPerfil.TabStop = false;
             // 
+            // lblId
+            // 
+            this.lblId.AutoSize = true;
+            this.lblId.Location = new System.Drawing.Point(712, 13);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(0, 17);
+            this.lblId.TabIndex = 20;
+            // 
             // FrmJuego
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -262,6 +271,7 @@
             this.BackgroundImage = global::BlackJack.Properties.Resources._1_split33;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(913, 530);
+            this.Controls.Add(this.lblId);
             this.Controls.Add(this.fotoPerfil);
             this.Controls.Add(this.txtGanadas);
             this.Controls.Add(this.txtTotalJugadas);
@@ -323,5 +333,6 @@
         private System.Windows.Forms.TextBox txtTotalJugadas;
         private System.Windows.Forms.TextBox txtGanadas;
         private System.Windows.Forms.PictureBox fotoPerfil;
+        private System.Windows.Forms.Label lblId;
     }
 }

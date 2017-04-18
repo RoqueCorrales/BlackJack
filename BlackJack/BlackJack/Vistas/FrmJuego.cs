@@ -98,6 +98,7 @@ namespace BlackJack.Vistas
             btnCarta.Visible = true;
             btnQuedarse.Visible = true;
             btnNuevo.Visible = true;
+            lblId.Text = "";
 
         }
         public PartidaJugada prepararPartidaJugada()
@@ -198,6 +199,7 @@ namespace BlackJack.Vistas
                 rebarajar();
             }
             List<Carta> Lista = WebApi.requestCardStartGame(Juego.Partida.deck_Id);
+            lblId.Text = Juego.Partida.deck_Id;
             foreach (Carta item in Lista)
             {
                 mostar(item);
@@ -310,6 +312,8 @@ namespace BlackJack.Vistas
         public void rebarajar()
         {
             WebApi.reshuffleCards(Juego.Partida.deck_Id);
+            lblId.Text = Juego.Partida.deck_Id;
+            txtTotal.Text = Juego.Partida.remaining.ToString();
             MessageBox.Show("Cartas revueltas.");
         }
 
