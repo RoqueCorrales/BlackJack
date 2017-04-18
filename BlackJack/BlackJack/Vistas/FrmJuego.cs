@@ -20,6 +20,7 @@ namespace BlackJack.Vistas
         private Controlador.Data dataCon = new Data();
         private Modelo.DATA data;
         private PartidaJugada par;
+        private Boolean hayGanador;
         public FrmJuego()
         {
 
@@ -64,6 +65,7 @@ namespace BlackJack.Vistas
             btnCarta.Visible = false;
             btnQuedarse.Visible = false;
             par = new PartidaJugada();
+            hayGanador = false;
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -99,6 +101,7 @@ namespace BlackJack.Vistas
             btnQuedarse.Visible = true;
             btnNuevo.Visible = true;
             lblId.Text = "";
+            hayGanador = false;
 
         }
         public PartidaJugada prepararPartidaJugada()
@@ -185,6 +188,7 @@ namespace BlackJack.Vistas
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
                 btnNuevo.Visible = true;
+                hayGanador = true;
             }
 
 
@@ -268,6 +272,7 @@ namespace BlackJack.Vistas
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
                 btnNuevo.Visible = true;
+                hayGanador = true;
 
             }
             else if (totalJugador == totalDealear)
@@ -284,6 +289,7 @@ namespace BlackJack.Vistas
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
                 btnNuevo.Visible = true;
+                hayGanador = true;
             }
             else
             {
@@ -301,6 +307,7 @@ namespace BlackJack.Vistas
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
                 btnNuevo.Visible = true;
+                hayGanador = true;
             }
         }
 
@@ -347,7 +354,11 @@ namespace BlackJack.Vistas
 
         private void FrmJuego_FormClosing(object sender, FormClosingEventArgs e)
         {
-            quedarse();
+            if((barajaJuador.cartas.Count >=2 )&& (hayGanador == false))
+            {
+                quedarse();
+            }
+            
             
         }
     }
