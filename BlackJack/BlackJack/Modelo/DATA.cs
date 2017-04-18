@@ -15,6 +15,7 @@ namespace BlackJack.Modelo
             db.Insert("usuario", jugador);
         }
 
+
         public Jugador SelectLogin(string idfacebook)
         {
             Jugador p = new Jugador();
@@ -65,6 +66,13 @@ namespace BlackJack.Modelo
             db.Update("usuario", "id", p);
         }
       
+        //Insertar
 
+
+        public void insertarPartidaJugada(PartidaJugada partida)
+        {
+            db.Insert("partida",partida);
+
+        }
     }
 }

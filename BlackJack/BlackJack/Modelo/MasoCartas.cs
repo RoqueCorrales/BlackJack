@@ -11,6 +11,6 @@ namespace BlackJack.Modelo
         public int remaining { get; set; }
         public List<Carta> cards { get; set; }
         public string deck_id { get; set; }
-        public bool success { get; set; }
+        
     }
 }

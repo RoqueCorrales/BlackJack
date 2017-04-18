@@ -17,8 +17,9 @@ namespace BlackJack.Vistas
         string cartaOculta ;
         private Jugador jugador;
         public Controlador.WebApi api;
-       
+        private Controlador.Data dataCon = new Data(); 
         private Modelo.DATA data;
+        private PartidaJugada par;
         public FrmJuego()
         {
 
@@ -40,7 +41,7 @@ namespace BlackJack.Vistas
             txtGanadas.Text = jugador.partidasganadas.ToString();
             btnCarta.Visible = false;
             btnQuedarse.Visible = false;
-
+            par = new PartidaJugada();
 
 
         }
@@ -62,6 +63,7 @@ namespace BlackJack.Vistas
             txtGanadas.Text = this.jugador.partidasganadas.ToString();
             btnCarta.Visible = false;
             btnQuedarse.Visible = false;
+            par = new PartidaJugada();
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -76,6 +78,62 @@ namespace BlackJack.Vistas
 
 
         }
+        private void limpiar()
+        {
+            CartaUno.Image = null;
+            cartaDos.Image = null;
+            cartaTres.Image = null;
+            cartaCuatro.Image = null;
+            cartaCinco.Image = null;
+            c1.Image = null;
+            c2.Image = null;
+            c3.Image = null;
+            c4.Image = null;
+            c5.Image = null;
+            totalDealear = 0;
+            totalJugador = 0;
+            barajaDealer = new Baraja();
+            barajaJuador = new Baraja();
+            Juego.ContadorCartas = 0;
+            btnCarta.Visible = true;
+            btnQuedarse.Visible = true;
+            btnNuevo.Visible = true;
+
+        }
+        public PartidaJugada prepararPartidaJugada()
+        {
+            PartidaJugada p = new PartidaJugada();
+            p.fecha = DateTime.Now;
+            p.idjugador = jugador.idfacebook;
+            p.deck_id = Juego.Partida.deck_Id;
+            
+            return p;
+        }
+        private void mostrarDealear(Carta c)
+        {
+            switch (barajaDealer.cartas.Count)
+            {
+                case 0:
+                    c1.Image = System.Drawing.Image.FromFile(cartaOculta);
+
+                    break;
+                case 1:
+                    c2.ImageLocation = c.Image;
+                    break;
+                case 2:
+                    c3.ImageLocation = c.Image;
+                    break;
+                case 3:
+                    c4.ImageLocation = c.Image;
+                    break;
+                case 4:
+                    c5.ImageLocation = c.Image;
+                    break;
+
+            }
+        }
+
+
         private void mostar(Carta c)
         {
             switch (Juego.ContadorCartas)
@@ -103,28 +161,7 @@ namespace BlackJack.Vistas
 
             }
         }
-        private void limpiar()
-        {
-            CartaUno.Image = null;
-            cartaDos.Image = null;
-            cartaTres.Image = null;
-            cartaCuatro.Image = null;
-            cartaCinco.Image = null;
-            c1.Image = null;
-            c2.Image = null;
-            c3.Image = null;
-            c4.Image = null;
-            c5.Image = null;
-            totalDealear = 0;
-            totalJugador = 0;
-            barajaDealer = new Baraja();
-            barajaJuador = new Baraja();
-            Juego.ContadorCartas = 0;
-            btnCarta.Visible = true;
-            btnQuedarse.Visible = true;
-            btnNuevo.Visible = true;
-         
-        }
+      
 
         private void btnCarta_Click(object sender, EventArgs e)
         {
@@ -141,6 +178,9 @@ namespace BlackJack.Vistas
                 jugador.partidasjugadas = jugador.partidasjugadas + 1;
                 txtTotalJugadas.Text = jugador.partidasjugadas.ToString();
                 Accion(jugador);
+                par = prepararPartidaJugada();
+                par.ganaste = false;
+               // dataCon.insertarPartidaJugada(par);
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
                 btnNuevo.Visible = true;
@@ -149,14 +189,20 @@ namespace BlackJack.Vistas
 
         }
 
-        public void Iniciar() { 
-        List<Carta> Lista = WebApi.requestCardStartGame(Juego.Partida.deck_Id);
+        public void Iniciar() {
+
+
+            if (MessageBox.Show("Quiere rebarajar el maso ?", "Rebarajar Maso", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                rebarajar();
+            }
+            List<Carta> Lista = WebApi.requestCardStartGame(Juego.Partida.deck_Id);
             foreach (Carta item in Lista)
             {
                 mostar(item);
                
                 totalJugador = log.totalCartas(item, barajaJuador.cartas);
-               // barajaJuador.cartas.Add(item);
+               
                 txtTotal.Text = Juego.Partida.remaining.ToString();
             }
 
@@ -169,37 +215,14 @@ namespace BlackJack.Vistas
                 mostrarDealear(item);
                
                 totalDealear =  log.totalCartas(item, barajaDealer.cartas);
-                //barajaDealer.cartas.Add(item);
+               
                 txtTotal.Text = Juego.Partida.remaining.ToString();
             }
 
         }
 
 
-        private void mostrarDealear(Carta c)
-        {
-            switch (barajaDealer.cartas.Count)
-            {
-                case 0:
-                    c1.Image = System.Drawing.Image.FromFile(cartaOculta);
-                   
-                    break;
-                case 1:
-                    c2.ImageLocation = c.Image;
-                    break;
-                case 2:
-                    c3.ImageLocation = c.Image;
-                    break;
-                case 3:
-                    c4.ImageLocation = c.Image;
-                    break;
-                case 4:
-                    c5.ImageLocation = c.Image;
-                    break;
-              
-            }
-        }
-
+     
         private void cartaCinco_Click(object sender, EventArgs e)
         {
 
@@ -213,7 +236,7 @@ namespace BlackJack.Vistas
                 Carta carta = WebApi.requestCard(Juego.Partida.deck_Id);
                 mostrarDealear(carta);
                 totalDealear =  log.totalCartas(carta, barajaDealer.cartas);
-              //  barajaDealer.cartas.Add(carta);
+              
                 txtTotal.Text = Juego.Partida.remaining.ToString();
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
@@ -227,6 +250,9 @@ namespace BlackJack.Vistas
                 jugador.partidasjugadas = jugador.partidasjugadas + 1;
                 txtTotalJugadas.Text = jugador.partidasjugadas.ToString();
                 Accion(jugador);
+                par = prepararPartidaJugada();
+                par.ganaste = false;
+               // dataCon.insertarPartidaJugada(par);
 
 
                 btnQuedarse.Visible = false;
@@ -241,6 +267,9 @@ namespace BlackJack.Vistas
                 jugador.partidasjugadas = jugador.partidasjugadas + 1;
                 txtTotalJugadas.Text = jugador.partidasjugadas.ToString();
                 Accion(jugador);
+                par = prepararPartidaJugada();
+                par.ganaste = false;
+              //  dataCon.insertarPartidaJugada(par);
 
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
@@ -255,6 +284,9 @@ namespace BlackJack.Vistas
                 txtTotalJugadas.Text = jugador.partidasjugadas.ToString();
                 txtGanadas.Text = jugador.partidasganadas.ToString();
                 Accion(jugador);
+                par = prepararPartidaJugada();
+                par.ganaste = true;
+              //  dataCon.insertarPartidaJugada(par);
 
                 btnQuedarse.Visible = false;
                 btnCarta.Visible = false;
@@ -265,9 +297,16 @@ namespace BlackJack.Vistas
 
         private void btnRebajar_Click(object sender, EventArgs e)
         {
+            rebarajar();
+        }
+
+        public void rebarajar()
+        {
             WebApi.reshuffleCards(Juego.Partida.deck_Id);
             MessageBox.Show("Cartas revueltas.");
         }
+
+
         public void Accion(Jugador jugador)
         {
             if (data.SelectID(jugador.idfacebook))

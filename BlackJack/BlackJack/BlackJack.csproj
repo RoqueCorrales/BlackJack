@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controlador\Data.cs" />
     <Compile Include="Controlador\WebApi.cs" />
     <Compile Include="Logica\Juego.cs" />
     <Compile Include="Logica\Logica.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Modelo\Jugador.cs" />
     <Compile Include="Modelo\MasoCartas.cs" />
     <Compile Include="Modelo\Partida.cs" />
+    <Compile Include="Modelo\PartidaJugada.cs" />
     <Compile Include="Modelo\WebAPI.cs" />
     <Compile Include="Models\Generated\Database.cs">
       <AutoGen>True</AutoGen>
