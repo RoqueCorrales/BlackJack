@@ -244,7 +244,7 @@ namespace BlackJack.Vistas
 
         public void quedarse()
         {
-            while (totalDealear <= totalJugador)
+            while (totalDealear <= totalJugador && totalDealear != 21)
             {
                 Carta carta = WebApi.requestCard(Juego.Partida.deck_Id);
                 mostrarDealear(carta);
