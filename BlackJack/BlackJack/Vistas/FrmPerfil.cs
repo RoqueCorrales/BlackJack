@@ -14,6 +14,7 @@ namespace BlackJack.Vistas
     public partial class FrmPerfil : Form
     {
         Jugador jugador;
+        Jugador a;
         private Modelo.DATA data;
         public FrmPerfil()
         {
@@ -26,11 +27,19 @@ namespace BlackJack.Vistas
             InitializeComponent();
             data = new Modelo.DATA();
             
-            jugador = data.SelectLogin(jugador.idfacebook);
+            if(data.SelectLogin(jugador.idfacebook).nombre == null)
+            {
+                this.jugador = jugador;
+            }
             
             lblNombre.Text = jugador.nombre;
             lblApellido.Text = jugador.apellido;
-            if (jugador.genero.Equals("male"))
+            if(jugador.genero == null)
+            {
+                jugador.genero = "Indefinido";
+                lblGenero.Text = "Indefinido";
+            }
+            else if (jugador.genero.Equals("male"))
             {
                 lblGenero.Text = "Hombre";
             }else
