@@ -49,6 +49,8 @@
             this.txtGanadas = new System.Windows.Forms.TextBox();
             this.fotoPerfil = new System.Windows.Forms.PictureBox();
             this.lblId = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblPuntajeJugador = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.CartaUno)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cartaTres)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cartaDos)).BeginInit();
@@ -264,6 +266,23 @@
             this.lblId.Size = new System.Drawing.Size(0, 17);
             this.lblId.TabIndex = 20;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 317);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(64, 17);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "Puntaje :";
+            // 
+            // lblPuntajeJugador
+            // 
+            this.lblPuntajeJugador.AutoSize = true;
+            this.lblPuntajeJugador.Location = new System.Drawing.Point(104, 317);
+            this.lblPuntajeJugador.Name = "lblPuntajeJugador";
+            this.lblPuntajeJugador.Size = new System.Drawing.Size(0, 17);
+            this.lblPuntajeJugador.TabIndex = 22;
+            // 
             // FrmJuego
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -271,6 +290,8 @@
             this.BackgroundImage = global::BlackJack.Properties.Resources._1_split33;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(913, 530);
+            this.Controls.Add(this.lblPuntajeJugador);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.fotoPerfil);
             this.Controls.Add(this.txtGanadas);
@@ -334,5 +355,7 @@
         private System.Windows.Forms.TextBox txtGanadas;
         private System.Windows.Forms.PictureBox fotoPerfil;
         private System.Windows.Forms.Label lblId;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblPuntajeJugador;
     }
 }

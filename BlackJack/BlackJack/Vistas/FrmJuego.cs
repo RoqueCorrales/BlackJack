@@ -102,6 +102,7 @@ namespace BlackJack.Vistas
             btnNuevo.Visible = true;
             lblId.Text = "";
             hayGanador = false;
+            lblPuntajeJugador.Text ="";
 
         }
         public PartidaJugada prepararPartidaJugada()
@@ -173,6 +174,7 @@ namespace BlackJack.Vistas
             this.mostar(carta);
             txtTotal.Text = Juego.Partida.remaining.ToString();
             totalJugador = log.totalCartas(carta, barajaJuador.cartas);
+            lblPuntajeJugador.Text = totalJugador.ToString();
             // barajaJuador.cartas.Add(carta);
 
             if (totalJugador > 21)
@@ -211,6 +213,7 @@ namespace BlackJack.Vistas
                 totalJugador = log.totalCartas(item, barajaJuador.cartas);
 
                 txtTotal.Text = Juego.Partida.remaining.ToString();
+                lblPuntajeJugador.Text = totalJugador.ToString();
             }
 
         }
