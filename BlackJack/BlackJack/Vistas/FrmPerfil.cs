@@ -31,6 +31,10 @@ namespace BlackJack.Vistas
             {
                 this.jugador = jugador;
             }
+            else
+            {
+                jugador = data.SelectLogin(jugador.idfacebook);
+            }
             
             lblNombre.Text = jugador.nombre;
             lblApellido.Text = jugador.apellido;

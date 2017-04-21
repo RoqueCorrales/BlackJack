@@ -293,7 +293,7 @@
             this.Controls.Add(this.cartaTres);
             this.Controls.Add(this.CartaUno);
             this.Name = "FrmJuego";
-            this.Text = "FrmJuego";
+            this.Text = "BlackJack";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmJuego_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.CartaUno)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cartaTres)).EndInit();

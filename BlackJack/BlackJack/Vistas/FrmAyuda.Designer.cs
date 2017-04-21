@@ -51,7 +51,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FrmAyuda";
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
-            this.Text = "FrmAyuda";
+            this.Text = "Ayuda";
             this.ResumeLayout(false);
             this.PerformLayout();
 

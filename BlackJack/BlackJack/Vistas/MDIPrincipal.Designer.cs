@@ -128,7 +128,7 @@
             this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MDIPrincipal";
-            this.Text = "MDIPrincipal";
+            this.Text = "BlackJack";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MDIPrincipal_FormClosing);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();

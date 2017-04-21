@@ -208,7 +208,7 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmPerfil";
-            this.Text = "FrmPerfil";
+            this.Text = "Perfil";
             ((System.ComponentModel.ISupportInitialize)(this.fotoPerfil)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
